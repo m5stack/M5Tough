@@ -6,6 +6,10 @@ AXP192::AXP192()
 
 void AXP192::begin(void)
 {
+    // The LCD is controlled by the M5GFX, so it is not operated here.
+    // M5Tough LCD Backlight = LDO3
+    // M5Tough LCD Reset = GPIO4
+
 
     Wire1.begin(21, 22);
     Wire1.setClock(400000);
@@ -29,36 +33,17 @@ void AXP192::begin(void)
     SetESPVoltage(3350);
     Serial.printf("axp: esp32 power voltage was set to 3.35v\n");
 
-    SetLcdVoltage(2800);
-    Serial.printf("axp: lcd backlight voltage was set to 2.80v\n");
-
     SetLDOVoltage(2, 3300); //Periph power voltage preset (LCD_logic, SD card)
     Serial.printf("axp: lcd logic and sdcard voltage preset to 3.3v\n");
 
-    SetLDOVoltage(3, 3300); //Vibrator power voltage preset
-    Serial.printf("axp: LCD Bk voltage preset to 2v\n");
-
     SetLDOEnable(2, true);
 
-    SetLDOEnable(3, true);
-
     SetCHGCurrent(kCHG_100mA);
-    //SetAxpPriphPower(1);
-    //Serial.printf("axp: lcd_logic and sdcard power enabled\n\n");
-
-    //pinMode(39, INPUT_PULLUP);
-
-    //AXP192 GPIO4
-    Write1Byte(0X95, (Read8bit(0x95) & 0x72) | 0X84);
 
     Write1Byte(0X36, 0X4C);
 
     Write1Byte(0x82, 0xff);
 
-    SetLCDRSet(0);
-    delay(100);
-    SetLCDRSet(1);
-    delay(100);
     // I2C_WriteByteDataAt(0X15,0XFE,0XFF);
 
     //  bus power mode_output
@@ -444,13 +429,6 @@ void AXP192::SetESPVoltage(uint16_t voltage)
         SetDCVoltage(0, voltage);
     }
 }
-void AXP192::SetLcdVoltage(uint16_t voltage)
-{
-    if (voltage >= 2500 && voltage <= 3300)
-    {
-        //SetDCVoltage(2, voltage);
-    }
-}
 
 void AXP192::SetLDOEnable(uint8_t number, bool state)
 {
@@ -467,25 +445,6 @@ void AXP192::SetLDOEnable(uint8_t number, bool state)
     {
         Write1Byte(0x12, (Read8bit(0x12) & (~mark)));
     }
-}
-
-void AXP192::SetLCDRSet(bool state)
-{
-    uint8_t reg_addr = 0x96;
-    uint8_t gpio_bit = 0x02;
-    uint8_t data;
-    data = Read8bit(reg_addr);
-
-    if (state)
-    {
-        data |= gpio_bit;
-    }
-    else
-    {
-        data &= ~gpio_bit;
-    }
-
-    Write1Byte(reg_addr, data);
 }
 
 void AXP192::SetBusPowerMode(uint8_t state)

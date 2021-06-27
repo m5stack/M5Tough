@@ -1,18 +1,18 @@
-// Copyright (c) M5Core2. All rights reserved.
+// Copyright (c) M5Tough. All rights reserved.
 
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 /**
- * \par Copyright (C), 2016-2017, M5Core2
- * \class M5Core2
- * \brief   M5Core2 library.
- * @file    M5Core2.h
- * @author  M5Core2
+ * \par Copyright (C), 2020-2021, M5Tough
+ * \class M5Tough
+ * \brief   M5Tough library.
+ * @file    M5Tough.h
+ * @author  M5Tough
  * @version V0.0.1 Beta
- * @date    2020/08/12
- * @brief   Header for M5Core2.cpp module
+ * @date    2021/06/25
+ * @brief   Header for M5Tough.cpp module
  *
  * \par Description
- * This file is a drive for M5Core2.
+ * This file is a drive for M5Tough.
  *
  * \par Method List:
  *
@@ -53,60 +53,59 @@
  * \par History:
  * <pre>
  * `<Author>`         `<Time>`        `<Version>`        `<Descr>`
- * Hades2001         2020/08/12         0.0.1          Rebuild the new.
+ * lovyan03          2021/06/25         0.0.1          Rebuild the new.
  * </pre>
  *
  */
-// #define ESP32
-
-#ifndef _M5Core2_H_
-  #define _M5Core2_H_
-  
-  #if defined(ESP32)
-
-    #include <Arduino.h>
-    #include <Wire.h>
-    #include <SPI.h>
-    #include "FS.h"
-    #include "SD.h"
-
-    #include "utility/M5Display.h"
-    #include "utility/Config.h"
-    #include "utility/Speaker.h"
-    #include "utility/Touch.h"
-    #include "utility/AXP192.h"
-    #include "utility/RTC.h"
 
 
-    class M5Tough
-    {
-      public:
-        M5Tough();
-        void begin(bool LCDEnable = true, bool SDEnable = true, bool SerialEnable = true, bool I2CEnable = false);
-        void update();
+#ifndef _M5Tough_H_
+#define _M5Tough_H_
 
-        M5Display Lcd = M5Display();
+#if defined(ESP32)
 
-        AXP192 Axp;
+ #if defined (ARDUINO)
+  #include <Arduino.h>
+  #include <Wire.h>
+  #include <SPI.h>
+  #include "FS.h"
+  #include "SD.h"
+ #endif
 
-        Touch touch;
+  #include <M5GFX.h>
+  #include "utility/Config.h"
+  #include "utility/Speaker.h"
+  #include "utility/Touch.h"
+  #include "utility/AXP192.h"
+  #include "utility/RTC.h"
 
-        Speaker speaker;
+  class M5Tough
+  {
+    public:
+      M5Tough();
+      void begin(bool LCDEnable = true, bool SDEnable = true, bool SerialEnable = true, bool I2CEnable = false);
+      void update();
 
-        RTC  Rtc;
+      M5GFX Lcd;
+      
+      AXP192 Axp;
 
-        //void setPowerBoostKeepOn(bool en) __attribute__((deprecated));
-        //void setWakeupButton(uint8_t button) __attribute__((deprecated));
-        //void powerOFF() __attribute__((deprecated));
-        
-      private:
-          bool isInited;
-    };
-    
-    extern M5Tough M5;
-    #define m5 M5
-    #define lcd Lcd
-  #else
-    #error “This library only supports boards with ESP32 processor.”
-  #endif
+//      Touch touch;
+
+      Speaker speaker;
+
+      RTC  Rtc;
+
+      //void setPowerBoostKeepOn(bool en) __attribute__((deprecated));
+      //void setWakeupButton(uint8_t button) __attribute__((deprecated));
+      //void powerOFF() __attribute__((deprecated));
+    private:
+      m5gfx::board_t _board;
+      bool _isInited;
+  };
+
+  extern M5Tough M5;
+#else
+  #error “This library only supports boards with ESP32 processor.”
+#endif
 #endif

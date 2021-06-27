@@ -78,9 +78,7 @@ public:
     void SetLDOVoltage(uint8_t number , uint16_t voltage);
     void SetDCVoltage(uint8_t number , uint16_t voltage);
     void SetESPVoltage(uint16_t voltage);
-    void SetLcdVoltage(uint16_t voltage);
     void SetLDOEnable( uint8_t number ,bool state );
-    void SetLCDRSet( bool state );
     void SetBusPowerMode( uint8_t state );
     void SetLed(uint8_t state);
     void SetSpkEnable(uint8_t state);
