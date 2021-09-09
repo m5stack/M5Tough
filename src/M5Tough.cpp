@@ -1,76 +1,90 @@
-// Copyright (c) M5Core2. All rights reserved.
+// Copyright (c) M5Tough. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 #include "M5Tough.h"
 
-M5Tough::M5Tough() : isInited(0)
-{
+M5Tough::M5Tough() : isInited(0) {
 }
 
-void M5Tough::begin(bool LCDEnable, bool SDEnable, bool SerialEnable, bool I2CEnable)
-{
-    // Correct init once
-    if (isInited == true)
-    {
-        return;
-    }
-    else
-    {
-        isInited = true;
-    }
+void M5Tough::begin(bool LCDEnable, bool SDEnable, bool SerialEnable, bool I2CEnable, mbus_mode_t mode) {
+  // Correct init once
+  if (isInited == true) {
+    return;
+  } else {
+    isInited = true;
+  }
 
-    // UART
-    if (SerialEnable == true)
-    {
-        Serial.begin(115200);
-        Serial.flush();
-        delay(50);
-        Serial.print("M5Core2 initializing...");
-    }
+  // UART
+  if (SerialEnable == true) {
+    Serial.begin(115200);
+    Serial.flush();
+    delay(50);
+    Serial.print("M5Tough initializing...");
+  }
 
-    // I2C init
-    if (I2CEnable == true)
-    {
-        Wire.begin(32, 33);
-    }
+  // I2C init
+  if (I2CEnable == true) {
+    Wire.begin(32, 33);
+  }
 
-    Axp.begin();
+  Axp.begin(mode);
 
-    // LCD INIT
-    if (LCDEnable == true)
-    {
-        Lcd.begin();
-    }
+  // LCD INIT
+  if (LCDEnable == true) {
+    Lcd.begin();
+  }
 
-    // Touch init
-    //Touch.begin(); // Touch begin after AXP begin. (Reset at the start of AXP)
+  // Touch init
+  Touch.begin();  // Touch begin after AXP begin. (Reset at the start of AXP)
 
-    // Speaker init
-    speaker.begin();
+  // TF Card
+  if (SDEnable == true) {
+    SD.begin(TFCARD_CS_PIN, SPI, 40000000);
+  }
 
-    // TF Card
-    if (SDEnable == true)
-    {
-        SD.begin(TFCARD_CS_PIN, SPI, 40000000);
-    }
+  // TONE
+  // Speaker.begin();
 
-    touch.begin();
+  if (SerialEnable == true) {
+    Serial.println("OK");
+  }
 
-    // TONE
-
-    if (SerialEnable == true)
-    {
-        Serial.println("OK");
-    }
-
-    Rtc.begin();
+  Rtc.begin();
 }
 
-void M5Tough::update()
-{
+void M5Tough::update() {
+  Touch.update();
+  Buttons.update();
+  yield();
+}
 
-    touch.read();
-    //yield();
+void M5Tough::shutdown()
+{
+    Axp.PowerOff();
+}
+int M5Tough::shutdown(int seconds)
+{
+    Rtc.clearIRQ();
+    Rtc.SetAlarmIRQ(seconds);
+    delay(10);
+    Axp.PowerOff();
+    return 0;
+}
+int M5Tough::shutdown(const RTC_TimeTypeDef &RTC_TimeStruct)
+{
+    Rtc.clearIRQ();
+    Rtc.SetAlarmIRQ(RTC_TimeStruct);
+    delay(10);
+    Axp.PowerOff();
+    return 0;
+}
+int M5Tough::shutdown(const RTC_DateTypeDef &RTC_DateStruct, const RTC_TimeTypeDef &RTC_TimeStruct)
+{
+    Rtc.clearIRQ();
+    Rtc.SetAlarmIRQ(RTC_DateStruct,RTC_TimeStruct);
+    delay(10);
+    Axp.PowerOff();
+    return 0;
 }
 
 M5Tough M5;

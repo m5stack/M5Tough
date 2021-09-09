@@ -361,7 +361,7 @@ void TFT_eSPI::init(uint8_t tc)
   spi_begin();
 
 #ifdef TFT_RST
-#ifdef M5CORE2
+#ifdef M5TOUGH
   pinMode(TFT_RST, INPUT_PULLDOWN);
   delay(1);
   bool lcd_version = digitalRead(TFT_RST);

@@ -1,18 +1,18 @@
-// Copyright (c) M5Core2. All rights reserved.
+// Copyright (c) M5Tough. All rights reserved.
 
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 /**
- * \par Copyright (C), 2016-2017, M5Core2
- * \class M5Core2
- * \brief   M5Core2 library.
- * @file    M5Core2.h
- * @author  M5Core2
+ * \par Copyright (C), 2016-2017, M5Tough
+ * \class M5Tough
+ * \brief   M5Tough library.
+ * @file    M5Tough.h
+ * @author  M5Tough
  * @version V0.0.1 Beta
  * @date    2020/08/12
- * @brief   Header for M5Core2.cpp module
+ * @brief   Header for M5Tough.cpp module
  *
  * \par Description
- * This file is a drive for M5Core2.
+ * This file is a drive for M5Tough.
  *
  * \par Method List:
  *
@@ -48,7 +48,10 @@
         M5.Lcd.drawJpg(const uint8_t *jpg_data, size_t jpg_len, uint16_t x, uint16_t y);
         M5.Lcd.drawJpgFile(fs::FS &fs, const char *path, uint16_t x, uint16_t y);
         M5.Lcd.drawBmpFile(fs::FS &fs, const char *path, uint16_t x, uint16_t y);
-
+    Touch:
+        See M5Touch.h for documentation
+    Buttons:
+        See utility/M5Button.h for documentation
  *
  * \par History:
  * <pre>
@@ -59,9 +62,9 @@
  */
 // #define ESP32
 
-#ifndef _M5Core2_H_
-  #define _M5Core2_H_
-  
+#ifndef _M5Tough_H_
+  #define _M5Tough_H_
+
   #if defined(ESP32)
 
     #include <Arduino.h>
@@ -70,39 +73,68 @@
     #include "FS.h"
     #include "SD.h"
 
-    #include "utility/M5Display.h"
+    #include "M5Display.h"
+    #include "M5Touch.h"			    // M5Touch
+    #include "utility/M5Button.h"	// M5Buttons, M5Events, Button, Gesture
     #include "utility/Config.h"
-    #include "utility/Speaker.h"
-    #include "utility/Touch.h"
-    #include "utility/AXP192.h"
-    #include "utility/RTC.h"
+    #include "utility/CommUtil.h"
+    #include "utility/MPU6886.h"
+    #include "AXP192.h"
+    #include "RTC.h"
 
 
     class M5Tough
     {
       public:
         M5Tough();
-        void begin(bool LCDEnable = true, bool SDEnable = true, bool SerialEnable = true, bool I2CEnable = false);
+        void begin(bool LCDEnable = true, bool SDEnable = true, bool SerialEnable = true, bool I2CEnable = false, mbus_mode_t mode = kMBusModeOutput);
         void update();
 
-        M5Display Lcd = M5Display();
 
+        void shutdown();
+        int shutdown( int seconds );
+        int shutdown( const RTC_TimeTypeDef &RTC_TimeStruct);
+        int shutdown( const RTC_DateTypeDef &RTC_DateStruct, const RTC_TimeTypeDef &RTC_TimeStruct);
+
+        // LCD
+        M5Display Lcd;
+
+        // Power
         AXP192 Axp;
 
-        Touch touch;
+		    // Touch
+        M5Touch Touch;
 
-        Speaker speaker;
+        // Buttons (global button and gesture functions)
+        M5Buttons Buttons;
+
+        // Default "button" that gets events where there is no button.
+        Button background = Button(0, 0, TOUCH_W, TOUCH_H, true, "background");
+/*
+        // Touch version of the buttons on older M5stack cores, below screen
+        Button BtnA = Button(10,240,110,40, true ,"BtnA");
+        Button BtnB = Button(130,240,70,40, true, "BtnB");
+        Button BtnC = Button(230,240,80,40, true, "BtnC");
+*/
+        MPU6886 IMU;
+
+        // I2C
+        CommUtil I2C;
 
         RTC  Rtc;
 
-        //void setPowerBoostKeepOn(bool en) __attribute__((deprecated));
-        //void setWakeupButton(uint8_t button) __attribute__((deprecated));
-        //void powerOFF() __attribute__((deprecated));
-        
+        /**
+         * Functions have been moved to Power class for compatibility.
+         * These will be removed in a future release.
+         */
+        void setPowerBoostKeepOn(bool en) __attribute__((deprecated));
+        void setWakeupButton(uint8_t button) __attribute__((deprecated));
+        void powerOFF() __attribute__((deprecated));
+
       private:
           bool isInited;
     };
-    
+
     extern M5Tough M5;
     #define m5 M5
     #define lcd Lcd
@@ -110,3 +142,5 @@
     #error “This library only supports boards with ESP32 processor.”
   #endif
 #endif
+
+
