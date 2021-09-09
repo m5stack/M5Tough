@@ -2,7 +2,7 @@
 
 English | [中文](README_cn.md)
 
-<img src="https://static-cdn.m5stack.com/resource/docs/static/assets/img/product_pics/core/core2/core2_01.webp" alt="M5Tough_P1" width="350" height="350">
+<!-- img src="https://static-cdn.m5stack.com/resource/docs/static/assets/img/product_pics/core/core2/core2_01.webp" alt="M5Tough_P1" width="350" height="350" -->
 
 ## Description
 
