@@ -78,7 +78,6 @@
     #include "utility/M5Button.h"	// M5Buttons, M5Events, Button, Gesture
     #include "utility/Config.h"
     #include "utility/CommUtil.h"
-    #include "utility/MPU6886.h"
     #include "AXP192.h"
     #include "RTC.h"
 
@@ -110,13 +109,6 @@
 
         // Default "button" that gets events where there is no button.
         Button background = Button(0, 0, TOUCH_W, TOUCH_H, true, "background");
-/*
-        // Touch version of the buttons on older M5stack cores, below screen
-        Button BtnA = Button(10,240,110,40, true ,"BtnA");
-        Button BtnB = Button(130,240,70,40, true, "BtnB");
-        Button BtnC = Button(230,240,80,40, true, "BtnC");
-*/
-        MPU6886 IMU;
 
         // I2C
         CommUtil I2C;
