@@ -14,7 +14,7 @@ M5Tough also features a built-in RTC module which can provide accurate timing. T
 
 The M5Tough retains the SD card slot and speakers. However, in order to ensure higher quality sound output, the I2S digital audio interface power amplifier chip is used to effectively prevent signal distortion. There are independent power and reset buttons on the left side and bottom of the base. 
 
-The 3 icons on the front of the screen are capacitive buttons which are programmable. There is a small expansion board on the back of the base with a 6-axis IMU sensor and microphone.
+The 3 icons on the front of the screen are capacitive buttons which are programmable.
 
 ## PinMap
 
@@ -42,12 +42,11 @@ TF card Maximum size 16GB
  <tr><td>CHSC6540</td><td>SDA</td><td>SCL</td><td>INT</td><td>RST</td></tr>
 </table>
 
-**Mic & NS4168**
+** NS4168**
 
 <table>
  <tr><td>ESP32 Chip</td><td>GPIO12</td><td>GPIO0</td><td>GPIO2</td><td>AXP_IO2</td><td>GPIO34</td></tr>
  <tr><td>NS4168</td><td>BCLK</td><td>LRCK</td><td>DATA</td><td>SPK_EN</td> </td></tr>
- <tr><td>Mic</td><td></td><td>CLK</td><td></td><td></td><td>DATA</td></tr>
 </table>
 
 **AXP Control**
@@ -65,13 +64,6 @@ TF card Maximum size 16GB
  <tr><td>ESP32 Chip</td><td>GPIO21</td><td>GPIO22</td><td></td></tr>
  <tr><td>AXP192</td><td></td><td></td><td>AXP_PWR</td></tr>
  <tr><td>BM8563</td><td>SDA</td><td>SCL</td><td>INT</td></tr>
-</table>
-
-**IMU(3-axis gyroscope & 3-axis accelerometer)**
-
-<table>
- <tr><td>ESP32 Chip</td><td>GPIO21</td><td>GPIO22</td></tr>
- <tr><td>MPU6886</td><td>SDA</td><td>SCL</td></tr>
 </table>
 
 **USB to serial chip**
