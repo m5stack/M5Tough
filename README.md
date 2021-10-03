@@ -2,7 +2,7 @@
 
 English | [中文](README_cn.md)
 
-<!-- img src="https://static-cdn.m5stack.com/resource/docs/static/assets/img/product_pics/core/core2/core2_01.webp" alt="M5Tough_P1" width="350" height="350" -->
+<img src="https://static-cdn.m5stack.com/resource/docs/static/assets/img/product_pics/core/tough/tough_01.webp" alt="M5Tough_P1" width="350" height="350">
 
 ## Description
 
@@ -45,7 +45,7 @@ TF card Maximum size 16GB
 ** NS4168**
 
 <table>
- <tr><td>ESP32 Chip</td><td>GPIO12</td><td>GPIO0</td><td>GPIO2</td><td>AXP_IO2</td><td>GPIO34</td></tr>
+ <tr><td>ESP32 Chip</td><td>GPIO12</td><td>GPIO0</td><td>GPIO2</td><td>AXP_IO2</td></tr>
  <tr><td>NS4168</td><td>BCLK</td><td>LRCK</td><td>DATA</td><td>SPK_EN</td> </td></tr>
 </table>
 
@@ -78,7 +78,6 @@ TF card Maximum size 16GB
 
 <table>
  <tr><td>ESP32 Chip</td><td>GPIO21</td><td>GPIO22</td></tr>
- <tr><td>MPU6886</td><td>SDA</td><td>SCL</td></tr>
  <tr><td>AXP192</td><td>SDA</td><td>SCL</td></tr>
  <tr><td>BM8563</td><td>SDA</td><td>SCL</td></tr>
  <tr><td>CHSC6540</td><td>SDA</td><td>SCL</td></tr>
