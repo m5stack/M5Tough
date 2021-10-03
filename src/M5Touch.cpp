@@ -11,12 +11,16 @@ M5Touch::M5Touch() {
 void M5Touch::begin() {
   Wire1.begin(21, 22);
   pinMode(CST_INT, INPUT);
+
+  Wire1.beginTransmission((uint8_t)CST_DEVICE_ADDR);
+  Wire1.write(0x5A);  /// (INT mode change)
+  Wire1.write(0x5A);
+  Wire1.endTransmission();
 }
 
 bool M5Touch::ispressed()
 {
-  return readRegister(0x02);
-// return (digitalRead(CST_INT) == LOW); // The INT pin is in pulse mode, so it can't be used like Core2.
+  return (digitalRead(CST_INT) == LOW);
 }
 
 // Single register read and write
@@ -63,7 +67,7 @@ bool M5Touch::read() {
   uint8_t pts = 0;
   uint8_t p0f = 0;
 
-  //if (ispressed())
+  if (ispressed())
   {
     uint8_t data[11];
     readRegisters(0x02, 11, data);

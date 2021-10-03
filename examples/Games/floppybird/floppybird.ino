@@ -286,14 +286,16 @@ void game_start() {
   M5.Lcd.println("M5Stack");
   M5.Lcd.setCursor( TFTW2 - (17*9), TFTH2 + 36);
   M5.Lcd.println("Premi il bottone centrale");
-  while (1) {
-    // wait for push button
-    if(M5.BtnB.wasPressed()) {
-      break;
-    }
+
+// wait for push screen
+  while (M5.Touch.ispressed())
+  {
     M5.update();
-        
-    }
+  }
+  while (!M5.Touch.ispressed())
+  {
+    M5.update();
+  }
       // init game settings
       game_init();
 }
@@ -327,15 +329,16 @@ void game_over() {
   M5.Lcd.print("score: ");
   M5.Lcd.print(score);
   M5.Lcd.setCursor( TFTW2 - (12*6), TFTH2 + 18);
-  M5.Lcd.println("press button B");
+  M5.Lcd.println("press screen");
   M5.Lcd.setCursor( 10, 28);
   M5.Lcd.print("Max Score:");
   M5.Lcd.print(maxScore);
-  while (1) {
-    // wait for push button
-      if(M5.BtnB.wasPressed()) {
-        break;
-      }
+  while (M5.Touch.ispressed())
+  {
+    M5.update();
+  }
+  while (!M5.Touch.ispressed())
+  {
     M5.update();
   }
 }

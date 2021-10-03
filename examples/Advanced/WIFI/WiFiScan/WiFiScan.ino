@@ -25,9 +25,9 @@ void setup()
 void loop()
 {
   M5.Lcd.setCursor(0,0);  //Set the cursor at (0,0).  将光标设置在(0,0)处
-  M5.Lcd.println("Please press Btn.A to (re)scan");
+  M5.Lcd.println("Please press screen to (re)scan");
   M5.update();  //Check the status of the key.  检测按键的状态
-  if(M5.BtnA.isPressed()){  //If button A is pressed.  如果按键A按下
+  if(M5.Touch.ispressed()){  //If button A is pressed.
     M5.Lcd.clear(); //Clear the screen.  清空屏幕
     M5.Lcd.println("scan start");
     int n = WiFi.scanNetworks();  //return the number of networks found.  返回发现的网络数

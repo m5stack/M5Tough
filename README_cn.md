@@ -1,6 +1,6 @@
 # M5Tough Library
 
-中文 | [English](README_cn.md)
+中文 | [English](README.md)
 
 <img src="https://static-cdn.m5stack.com/resource/docs/static/assets/img/product_pics/core/tough/tough_01.webp" alt="M5Tough_P1" width="350" height="350">
 

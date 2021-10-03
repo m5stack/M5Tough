@@ -44,7 +44,7 @@ void setup() {
 void loop() {
   ArduinoOTA.handle();  //Continuously check for update requests.  持续检测是否有更新请求
   M5.update();
-  if(M5.BtnA.isPressed()){  //if BtnA is Pressed.  如果按键A按下
+  if(M5.Touch.ispressed()){  //if screen is Pressed.
     ArduinoOTA.end(); //Ends the ArduinoOTA service.  结束OTA服务
     M5.lcd.println("OTA End!");
     delay(200);

@@ -48,7 +48,7 @@ void setup() {
 }
 
 void loop() {
-  if(M5.BtnA.wasPressed())
+  if(M5.Touch.ispressed())
   {
     M5.Lcd.clear();
     M5.Lcd.printf("CAN Test B!\n");
