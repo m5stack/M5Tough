@@ -41,6 +41,7 @@ void AXP192::begin(mbus_mode_t mode)
     Serial.printf("axp: vibrator voltage preset to 2v\n");
 
     SetLDOEnable(2, true);
+    SetLDOEnable(3, true);
 
     TouchReset(true);
 
