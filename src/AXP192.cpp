@@ -4,7 +4,13 @@ AXP192::AXP192()
 {
 }
 
+// Will be deprecated
 void AXP192::begin(mbus_mode_t mode)
+{
+    begin();
+}
+
+void AXP192::begin()
 {
 
     Wire1.begin(21, 22);
@@ -65,7 +71,16 @@ void AXP192::begin(mbus_mode_t mode)
     // I2C_WriteByteDataAt(0X15,0XFE,0XFF);
 
     //  bus power mode_output
-    SetBusPowerMode(mode);
+    // axp: check v-bus status
+    if(Read8bit(0x00) & 0x08) {
+        Write1Byte(0x30, Read8bit(0x30) | 0x80);
+        // if v-bus can use, disable M-Bus 5V output to input
+        SetBusPowerMode(kMBusModeInput);
+    }else{
+        // if not, enable M-Bus 5V output
+        SetBusPowerMode(kMBusModeOutput);
+    }
+
 }
 
 void AXP192::Write1Byte(uint8_t Addr, uint8_t Data)
