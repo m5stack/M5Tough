@@ -267,7 +267,7 @@ void AXP192::PrepareToSleep(void)
     TouchReset(false);
 
     // Turn LCD backlight off
-    SetDCDC3(false);
+    SetLDOEnable(3, false);
 }
 
 // Get current battery level
@@ -290,7 +290,7 @@ void AXP192::RestoreFromLightSleep(void)
     TouchReset(true);
 
     // Enable ADCs
-    SetAdcState(true);
+    SetLDOEnable(3, true);
 }
 
 uint8_t AXP192::GetWarningLeve(void)
