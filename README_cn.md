@@ -4,6 +4,9 @@
 
 <img src="https://static-cdn.m5stack.com/resource/docs/static/assets/img/product_pics/core/tough/tough_01.webp" alt="M5Tough_P1" width="350" height="350">
 
+* **如果查看 M5Tough 的详细介绍文档，[点击这里](https://docs.m5stack.com/zh_CN/core/tough)**
+
+<!-- * **如果想要购买 M5Tough 的话，[点击这里](https://item.taobao.com/item.htm?spm=a1z10.5-c-s.w4002-22404213529.29.5ada1d91KUL15v&id=623449145184)** -->
 
 ## 描述
 

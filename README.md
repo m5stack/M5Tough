@@ -4,6 +4,10 @@ English | [中文](README_cn.md)
 
 <img src="https://static-cdn.m5stack.com/resource/docs/static/assets/img/product_pics/core/tough/tough_01.webp" alt="M5Tough_P1" width="350" height="350">
 
+* **For the Detailed documentation of M5Tough, please [Click here](https://docs.m5stack.com/en/core/tough)**
+
+* **In order to buy M5Tough，please [Click here](https://shop.m5stack.com/collections/m5-controllers/products/m5stack-tough-esp32-iot-development-board-kit)**
+
 ## Description
 
 **M5Tough** is the second generation core device in the M5Stack development kit series, which further enhances the functions of the original generation of cores. 
