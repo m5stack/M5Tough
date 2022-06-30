@@ -27,66 +27,64 @@ The 3 icons on the front of the screen are capacitive buttons which are programm
 LCD ：320x240
 TF card Maximum size 16GB
 
-<table>
- <tr><td>ESP32 Chip</td><td>GPIO38</td><td>GPIO23</td><td>GPIO18</td><td>GPIO5</td><td>GPIO15</td><td></td><td> </td><td> </td></tr>
- <tr><td>AXP192 Chip</td><td> </td><td> </td><td> </td><td> </td><td> </td><td>AXP_IO4</td><td>AXP_LDO3</td><td>AXP_LDO2</td></tr>
- <tr><td>ILI9342C</td><td>MISO</td><td>MOSI</td><td>SCK</td><td>CS</td><td>DC</td><td>RST</td><td>BL</td><td>PWR</td></tr>
-</table>
+| ESP32 Chip  | GPIO38 | GPIO23 | GPIO18 | GPIO5 | GPIO15 |          |           |           |
+| ----------- | ------ | ------ | ------ | ----- | ------ | -------- | --------- | --------- |
+| AXP192 Chip |        |        |        |       |        | AXP\_IO4 | AXP\_LDO3 | AXP\_LDO2 |
+| ILI9342C    | MISO   | MOSI   | SCK    | CS    | DC     | RST      | BL        | PWR       |
 
-<table>
-<tr><td>ESP32 Chip</td><td>GPIO38</td><td>GPIO23</td><td>GPIO18</td><td>GPIO4</td></tr>
-<tr><td>TF Card</td><td>MISO</td><td>MOSI</td><td>SCK</td><td>CS</td></tr>
-</table>
+
+| ESP32 Chip | GPIO38 | GPIO23 | GPIO18 | GPIO4 |
+| ---------- | ------ | ------ | ------ | ----- |
+| TF Card    | MISO   | MOSI   | SCK    | CS    |
 
 **CAP.TOUCH**
 
-<table>
- <tr><td>ESP32 chip</td><td>GPIO21</td><td>GPIO22</td><td>GPIO39</td></tr>
- <tr><td>AXP192</td><td></td><td></td><td></td><td>AXP_IO4</td></tr>
- <tr><td>CHSC6540</td><td>SDA</td><td>SCL</td><td>INT</td><td>RST</td></tr>
-</table>
+| ESP32 chip | GPIO21 | GPIO22 | GPIO39 |          |
+| ---------- | ------ | ------ | ------ | -------- |
+| AXP192     |        |        |        | AXP\_IO4 |
+| CHSC6540   | SDA    | SCL    | INT    | RST      |
 
-** NS4168**
 
-<table>
- <tr><td>ESP32 Chip</td><td>GPIO12</td><td>GPIO0</td><td>GPIO2</td><td>AXP_IO2</td></tr>
- <tr><td>NS4168</td><td>BCLK</td><td>LRCK</td><td>DATA</td><td>SPK_EN</td> </td></tr>
-</table>
+
+**NS4168**
+
+| ESP32 Chip | GPIO12 | GPIO0 | GPIO2 | AXP\_IO2 |
+| ---------- | ------ | ----- | ----- | -------- |
+| NS4168     | BCLK   | LRCK  | DATA  | SPK\_EN  |
+
+
 
 **AXP Control**
 
-<table>
- <tr><td>AXP192</td><td>AXP_IO1</td><td>AXP_IO2</td><td>AXP_IO4</td><td>AXP_LDO3</td></tr>
- <tr><td>TouchPanel</td><td>RST</td><td></td><td></td><td></td></tr>
- <tr><td>SPEAKER</td><td></td><td>EN</td><td></td></tr>
- <tr><td>LCD</td><td></td><td></td><td>RST</td><td>backright</td></tr>
-</table>
+| AXP192     | AXP\_IO1 | AXP\_IO2 | AXP\_IO4 | AXP\_LDO3 |
+| ---------- | -------- | -------- | -------- | --------- |
+| TouchPanel | RST      |          |          |           |
+| SPEAKER    |          | EN       |          |           |
+| LCD        |          |          | RST      | backright |
+
 
 **RTC**
 
-<table>
- <tr><td>ESP32 Chip</td><td>GPIO21</td><td>GPIO22</td><td></td></tr>
- <tr><td>AXP192</td><td></td><td></td><td>AXP_PWR</td></tr>
- <tr><td>BM8563</td><td>SDA</td><td>SCL</td><td>INT</td></tr>
-</table>
+| ESP32 Chip | GPIO21 | GPIO22 |          |
+| ---------- | ------ | ------ | -------- |
+| AXP192     |        |        | AXP\_PWR |
+| BM8563     | SDA    | SCL    | INT      |
+
+
 
 **USB to serial chip**
 
-<table>
- <tr><td>ESP32 Chip</td><td>GPIO1</td><td>GPIO3</td></tr>
- <tr><td>CP2104</td><td>RXD</td><td>TXD</td></tr>
-</table>
-
+| ESP32 Chip | GPIO1 | GPIO3 |
+| ---------- | ----- | ----- |
+| CP2104     | RXD   | TXD   |
 
 **Internal I2C connection**
 
-<table>
- <tr><td>ESP32 Chip</td><td>GPIO21</td><td>GPIO22</td></tr>
- <tr><td>AXP192</td><td>SDA</td><td>SCL</td></tr>
- <tr><td>BM8563</td><td>SDA</td><td>SCL</td></tr>
- <tr><td>CHSC6540</td><td>SDA</td><td>SCL</td></tr>
-</table>
-
+| ESP32 Chip | GPIO21 | GPIO22 |
+| ---------- | ------ | ------ |
+| AXP192     | SDA    | SCL    |
+| BM8563     | SDA    | SCL    |
+| CHSC6540   | SDA    | SCL    |
 
 ## M5Tough M-BUS Schematic diagram
 
@@ -94,20 +92,10 @@ TF card Maximum size 16GB
 
 ## M5PORT EXPLAIN
 
-<table>
-      <thead>
-         <th>PORT</th>
-         <th>PIN</th>
-         <th>Note:</th>
-      </thead>
-      <tbody>
-      <tr>
-         <td>PORT-A(Red)</td>
-         <td>G32/33</td>
-         <td>I2C</td>
-      </tr>
-    </tbody>
-</table>
+| PORT           | PIN    | Note: |
+| -------------- | ------ | ----- |
+| PORT\-A\(Red\) | G32/33 | I2C   |
+
 
 ## More Information
 
